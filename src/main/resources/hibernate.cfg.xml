@@ -12,6 +12,7 @@
        <property name="hibernate.show_sql">true</property> 
         <mapping class="com.myapp.beans.Hero"/>
         <mapping class="com.myapp.beans.Abilities"/>
+        <mapping class="com.myapp.beans.Skins"/>
 
     </session-factory>
 </hibernate-configuration>

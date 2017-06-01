@@ -6,7 +6,6 @@ import com.myapp.beans.Abilities;
 import com.myapp.beans.Hero;
 import com.myapp.model.DAOHero;
 
-
 public class HeroService
 {
 	public static DAOHero heroDAO = new DAOHero();
@@ -24,5 +23,4 @@ public class HeroService
 		else 
 			return obj;
 	}
-
 }

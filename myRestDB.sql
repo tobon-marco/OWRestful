@@ -3,10 +3,16 @@ CREATE SEQUENCE hero_id_seq
   START WITH 1
   INCREMENT BY 1;
 /
+CREATE SEQUENCE skin_id_seq
+  START WITH 1
+  INCREMENT BY 1;
+/
 --TABLES ===============================================================
 
 --REFRENCE TABLE--------------------
 DROP TABLE HERO_TYPES;
+/
+DROP TABLE SKINS;
 /
 DROP TABLE HEROES;
 /
@@ -34,6 +40,15 @@ CREATE TABLE HEROES
   CONSTRAINT type_fk FOREIGN KEY (hero_type) REFERENCES HERO_TYPES
 );
 /
+CREATE TABLE SKINS
+(
+  ID NUMBER,
+  HERO_ID NUMBER,
+  SKIN_PIC VARCHAR2(500),
+  
+  CONSTRAINT skins_fk FOREIGN KEY (HERO_ID) REFERENCES HEROES
+);
+/
 CREATE TABLE ABILITIES
 (
   ID NUMBER,
@@ -57,7 +72,16 @@ CREATE OR REPLACE TRIGGER hero_id
     FROM dual;
   END;
 /
-
+CREATE OR REPLACE TRIGGER skin_id
+  BEFORE 
+    INSERT ON SKINS
+  FOR EACH ROW
+  BEGIN
+    SELECT skin_id_seq.NEXTVAL
+    INTO :new.id
+    FROM dual;
+  END;
+/
 --INSERTIONS =========================================
 --HERO_TYPES
 INSERT INTO HERO_TYPES VALUES (1, 'OFFENSE');

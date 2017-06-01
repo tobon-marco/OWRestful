@@ -15,7 +15,9 @@ import javax.ws.rs.core.Response.Status;
 //import org.slf4j.LoggerFactory;
 
 import com.myapp.beans.Hero;
+import com.myapp.beans.Skins;
 import com.myapp.services.HeroService;
+import com.myapp.services.SkinService;
 
 @Path("/heroes")
 @Produces(MediaType.APPLICATION_JSON)
@@ -23,6 +25,7 @@ public class HeroResource
 {
 	//private final Logger log = LoggerFactory.getLogger(this.getClass());
 	HeroService heroServ = new HeroService();
+	SkinService skinServ = new SkinService();
 	
 	//RETURNS ALL THE PROFILES IN OUR DATABASE
 	@GET
@@ -41,6 +44,18 @@ public class HeroResource
 	{
 		Hero hr = heroServ.getHeroOnName(heroName);
 		GenericEntity<Hero> list = new GenericEntity<Hero>(hr) {};
+		return Response.status(Status.OK).entity(list).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").build();
+		
+	}
+	//RETURNS A SPECIFIC PROFILE IN OUR DB
+	@GET
+	@Path("/{heroName}/skins/")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getHeroSkins(@PathParam("heroName") String heroName)
+	{
+		List<Skins> hr = skinServ.getHeroSkins(heroName);
+		GenericEntity<List<Skins>> list;
+		list = new GenericEntity<List<Skins>>(hr) {};
 		return Response.status(Status.OK).entity(list).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").build();
 		
 	}
