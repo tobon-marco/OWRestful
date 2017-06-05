@@ -163,4 +163,7 @@ INSERT INTO ABILITIES VALUES ( 42, ' Particle Cannon', ' Particle Barrier', ' Pr
 INSERT INTO HEROES VALUES ( 0, 'Zenyatta',  4, ' https://blzgdapipro-a.akamaihd.net/hero/zenyatta/hero-select-portrait.png');
 INSERT INTO ABILITIES VALUES ( 43, ' Orb Of Destruction', ' Orb Of Harmony', ' Orb Of Discord', ' N/A', ' TRANSCENDENCE');
 /
+SELECT * FROM SKINS S INNER JOIN 
+  HEROES H ON S.HERO_ID = H.ID AND H.name='Ana';
+/
 COMMIT;
