@@ -44,6 +44,10 @@ public class HeroResource
 	{
 		Hero hr = heroServ.getHeroOnName(heroName);
 		GenericEntity<Hero> list = new GenericEntity<Hero>(hr) {};
+		if(hr.getId() == 0)
+		{
+			return Response.status(Status.NOT_FOUND).entity(list).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").build();
+		}
 		return Response.status(Status.OK).entity(list).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").build();
 		
 	}
