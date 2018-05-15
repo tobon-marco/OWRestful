@@ -1,5 +1,6 @@
 package com.myapp.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -16,7 +17,18 @@ public class DAOHero
 	{
 		 Session currSession = HibernateUtil.getSession();
 	        
-	     List<Hero> allHeroes = currSession.createCriteria(Hero.class).list();
+	    // @SuppressWarnings("unchecked")
+		//List<Hero> allHeroes = (List<Hero>)currSession.createCriteria(Hero.class).list();
+		 
+		 String hql = "FROM Hero";
+		 Query query = currSession.createQuery(hql);
+		 
+		 List<Hero> allHeroes = new ArrayList<>();
+		 
+		 for (int i =0; i < query.list().size(); i++)
+		 {
+			 allHeroes.add((Hero)query.list().get(i));
+		 }
 	     
 	     currSession.close();
 	     return allHeroes;

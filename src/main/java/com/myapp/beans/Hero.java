@@ -1,11 +1,14 @@
 package com.myapp.beans;
 
+import java.util.Arrays;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -24,9 +27,9 @@ public class Hero
 	private String name;
 	
 //	@OneToOne(fetch = FetchType.LAZY, mappedBy = "hero", cascade = CascadeType.ALL)
-	@OneToOne(fetch = FetchType.LAZY,  cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER,  cascade = CascadeType.ALL, mappedBy="herott")
 	@PrimaryKeyJoinColumn
-	private Abilities myAbilities;
+	private List<Abilities> myAbilities;
 	
 	@Column(name="HERO_TYPE")
 	private int type;
@@ -55,12 +58,12 @@ public class Hero
 		this.name = name;
 	}
 
-	public final Abilities getMyAbilities()
+	public final List<Abilities> getMyAbilities()
 	{
 		return myAbilities;
 	}
 
-	public final void setMyAbilities(Abilities myAbilities)
+	public final void setMyAbilities(List<Abilities> myAbilities)
 	{
 		this.myAbilities = myAbilities;
 	}
@@ -93,13 +96,22 @@ public class Hero
 		// TODO Auto-generated constructor stub
 	}
 
-	public Hero(String name, Abilities myAbilities, String picture, int type)
+	public Hero(String name, List<Abilities> myAbilities, String picture, int type)
 	{
 		super();
-		this.id = id;
+		//this.id = id;
 		this.name = name;
 		this.myAbilities = myAbilities;
 		this.picture = picture;
 		this.type = type;
 	}
+
+	@Override
+	public String toString()
+	{
+		return "id=" + id + ", name=" + name + ", myAbilities="
+				+ myAbilities + ", type=" + type + ", picture="
+				+ picture;
+	}
+	
 }

@@ -26,6 +26,9 @@ public class Skins
 	@Column(name="SKIN_PIC")
 	private String picture;
 
+	@Column(name="SKIN_NAME")
+	private String skin_name;
+	
 	//private Hero hero;
 
 	//SETTERS AND GETTERS ===========================================================================
@@ -59,6 +62,16 @@ public class Skins
 		this.picture = picture;
 	}
 
+	public String getSkin_name()
+	{
+		return skin_name;
+	}
+
+	public void setSkin_name(String skin_name)
+	{
+		this.skin_name = skin_name;
+	}
+
 	// CONSTRUCTORS ===================================================================================================
 	public Skins()
 	{
@@ -66,12 +79,13 @@ public class Skins
 		// TODO Auto-generated constructor stub
 	}
 
-	public Skins(int id, Hero hero, String picture)
+	public Skins(int id, Hero hero, String picture, String skin_name)
 	{
 		super();
 		this.id = id;
 		this.hero = hero;
 		this.picture = picture;
+		this.skin_name = skin_name;
 	}
 
 	@Override

@@ -5,9 +5,9 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
-        <property name="hibernate.connection.password">password</property>
-        <property name="hibernate.connection.url">jdbc:oracle:thin:@test3.capllld6u0fa.us-east-1.rds.amazonaws.com:1521:ORCL</property>
-        <property name="hibernate.connection.username">admin</property>
+        <property name="hibernate.connection.password">Los_Heroes!</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@losheroes.cfen3r41ro7r.us-west-1.rds.amazonaws.com:1521:Heroes</property>
+        <property name="hibernate.connection.username">marcomau5</property>
         <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
        <property name="hibernate.show_sql">true</property> 
         <mapping class="com.myapp.beans.Hero"/>

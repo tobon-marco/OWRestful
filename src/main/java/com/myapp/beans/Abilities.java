@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -19,20 +21,15 @@ public class Abilities
 	@Column(name="ID")
 	private int id;
 	
-	@Column(name="AB1")
-	private String ab1;
+	@Column(name="AB_NAME")
+	private String ab_name;
 	
-	@Column(name="AB2")
-	private String ab2;
-	
-	@Column(name="AB3")
-	private String ab3;
-	
-	@Column(name="AB4")
-	private String ab4;
-	
-	@Column(name="ULT")
+	@Column(name="ISULT")
 	private String ult;
+	
+	@ManyToOne
+	@JoinColumn(name="HERO_ID", nullable=false)
+	private Hero herott;
 	
 	//SETTERS AND GETTERS ================================================
 	public final int getId()
@@ -40,62 +37,28 @@ public class Abilities
 		return id;
 	}
 
-	public final void setId(int id)
+	public String getAb_name() 
 	{
-		this.id = id;
+		return ab_name;
 	}
 
-	public final String getAb1()
+	public void setAb_name(String ab_name)
 	{
-		return ab1;
+		this.ab_name = ab_name;
 	}
 
-	public final void setAb1(String ab1)
-	{
-		this.ab1 = ab1;
-	}
-
-	public final String getAb2()
-	{
-		return ab2;
-	}
-
-	public final void setAb2(String ab2)
-	{
-		this.ab2 = ab2;
-	}
-
-	public final String getAb3()
-	{
-		return ab3;
-	}
-
-	public final void setAb3(String ab3)
-	{
-		this.ab3 = ab3;
-	}
-
-	public final String getAb4()
-	{
-		return ab4;
-	}
-
-	public final void setAb4(String ab4)
-	{
-		this.ab4 = ab4;
-	}
-
-	public final String getUlt()
+	public String getUlt() 
 	{
 		return ult;
 	}
 
-	public final void setUlt(String ult)
+	public void setUlt(String ult) 
 	{
 		this.ult = ult;
 	}
 
 	//CONSTRUCTOR =======================================================
+
 
 	public Abilities()
 	{
@@ -103,15 +66,17 @@ public class Abilities
 		// TODO Auto-generated constructor stub
 	}
 
-	public Abilities(int id, String ab1, String ab2, String ab3, String ab4, String ult, Hero hero)
+	public Abilities(int id, String ab_name, String ult, int heroId)
 	{
 		super();
 		this.id = id;
-		this.ab1 = ab1;
-		this.ab2 = ab2;
-		this.ab3 = ab3;
-		this.ab4 = ab4;
+		this.ab_name = ab_name;
 		this.ult = ult;
 	}
-	
+
+	@Override
+	public String toString()
+	{
+		return "id=" + id + ", ab_name=" + ab_name + ", ult=" + ult;
+	}
 }

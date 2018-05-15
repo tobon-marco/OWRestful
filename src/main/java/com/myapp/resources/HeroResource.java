@@ -23,15 +23,19 @@ import com.myapp.services.SkinService;
 @Produces(MediaType.APPLICATION_JSON)
 public class HeroResource
 {
+	
 	//private final Logger log = LoggerFactory.getLogger(this.getClass());
 	HeroService heroServ = new HeroService();
 	SkinService skinServ = new SkinService();
 	
 	//RETURNS ALL THE PROFILES IN OUR DATABASE
 	@GET
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response getHeroes()
 	{
+		System.out.println("Test");
 		List<Hero> hrs = heroServ.getAllHeroes();
+		System.out.println(hrs.toString());
 		GenericEntity<List<Hero>> list = new GenericEntity<List<Hero>>(hrs) {};
 		return Response.status(Status.OK).entity(list).header("Access-Control-Allow-Origin", "*").header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT").build();
 	}
@@ -43,6 +47,7 @@ public class HeroResource
 	public Response getHeroOnName(@PathParam("heroName") String heroName)
 	{
 		Hero hr = heroServ.getHeroOnName(heroName);
+		System.out.println(hr.toString());
 		GenericEntity<Hero> list = new GenericEntity<Hero>(hr) {};
 		if(hr.getId() == 0)
 		{
